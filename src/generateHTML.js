@@ -52,7 +52,7 @@ const generateIntern = function (intern) {
 
             <div class='card-body'>
                 <p class='id'>ID: ${intern.id}</p>
-                <p class='email'>Email: <a href='mailto:${engineer.email}'>${engineer.email}</a></p>
+                <p class='email'>Email: <a href='mailto:${intern.email}'>${intern.email}</a></p>
                 <p class='school'>School: ${intern.school}</p>
             </div>
         </div>
@@ -66,23 +66,23 @@ generateHTML = (data) => {
 
     for (let i = 0; i < data.length; i++) {
         const employee = data[i];
-        const role = employee.getRole();
+        const role = employee.getRole(); 
 
         if (role === 'Manager') {
             const managerCard = generateManager(employee);
-            
+
             pageArray.push(managerCard);
         }
 
         if (role === 'Engineer') {
             const engineerCard = generateEngineer(employee);
-            
+
             pageArray.push(engineerCard);
         }
 
         if (role === 'Intern') {
             const internCard = generateIntern(employee);
-            
+
             pageArray.push(internCard);
         }
 
