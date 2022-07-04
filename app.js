@@ -1,3 +1,6 @@
+// link to genrate html
+const generateHTML = require('./src/generateHTML.js');
+
 // link to node modules
 const inquirer = require('inquirer');
 const fs = require('fs');
@@ -7,15 +10,12 @@ const Engineer = require('./lib/Engineer.js');
 const Intern = require('./lib/Intern.js');
 const Manager = require('./lib/Manager.js');
 
-// link to genrate html
-const generateHTML = require('./src/generateHTML.js');
-
 // team array
 const teamArray = [];
 
 // manager prompts
 const addManager = () => {
-    return inquirer.prompt([
+    return inquirer.prompt ([
         {
             type: 'input',
             name: 'name',
@@ -68,14 +68,15 @@ const addManager = () => {
                 }
             }
         }
-    ]).then((answers) => {
-        const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
-        teamArray.push(manager);
-        addTeamMember();
-    }).catch((err) => {
-        console.log(err);
-    }
-    );
+    ])
+    
+    .then(managerInput => {
+        const  { name, id, email, officeNumber } = managerInput; 
+        const manager = new Manager (name, id, email, officeNumber);
+
+        teamArray.push(manager); 
+        console.log(manager); 
+    })
 };
 
 const addTeamMember = () => {
